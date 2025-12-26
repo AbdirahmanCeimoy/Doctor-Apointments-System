@@ -1,0 +1,11 @@
+{
+  "name": "doctor-appointment-system-root",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm --prefix ./Doctor-Appointment-System-main/frontend run dev\" \"npm --prefix ./Doctor-Appointment-System-main/backend run start:dev\"",
+    "install-all": "npm --prefix ./Doctor-Appointment-System-main/frontend install && npm --prefix ./Doctor-Appointment-System-main/backend install"
+  }
+}

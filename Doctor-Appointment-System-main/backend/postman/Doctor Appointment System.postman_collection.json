@@ -1,0 +1,697 @@
+{
+	"info": {
+		"_postman_id": "doctor-appointment-system",
+		"name": "Doctor Appointment System API",
+		"description": "Complete API collection for Doctor Appointment System with Users, Doctor Profiles, Time Slots, and Appointments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create Patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"patient@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"John Doe\",\n  \"phoneNumber\": \"+1234567890\",\n  \"dateOfBirth\": \"1990-01-15\",\n  \"address\": \"123 Main St, City, Country\",\n  \"role\": \"PATIENT\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Create a new patient user. Copy the 'id' from the response to use as patientId when creating appointments."
+					}
+				},
+				{
+					"name": "Create Doctor User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"doctor@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"Dr. Jane Smith\",\n  \"phoneNumber\": \"+1234567891\",\n  \"dateOfBirth\": \"1985-05-20\",\n  \"address\": \"456 Medical Center, City, Country\",\n  \"role\": \"DOCTOR\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Create a new doctor user. Copy the 'id' from the response to use as userId when creating a doctor profile."
+					}
+				},
+				{
+					"name": "Create User (Generic)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"User Name\",\n  \"phoneNumber\": \"+1234567890\",\n  \"dateOfBirth\": \"1990-01-15\",\n  \"address\": \"123 Main St, City, Country\",\n  \"role\": \"PATIENT\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "user-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"John Updated Doe\",\n  \"phoneNumber\": \"+1234567891\",\n  \"address\": \"456 New St, City, Country\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "user-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "user-id-here"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Doctor Profiles",
+			"item": [
+				{
+					"name": "Create Doctor Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"specialization\": \"Cardiology\",\n  \"qualifications\": \"MD, PhD in Cardiology\",\n  \"experience\": 10,\n  \"consultationFee\": 150.00,\n  \"bio\": \"Experienced cardiologist with 10 years of practice\",\n  \"licenseNumber\": \"LIC-12345\",\n  \"userId\": \"doctor-user-id-from-create-doctor-user-request\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/doctor-profiles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctor-profiles"
+							]
+						},
+						"description": "Create a doctor profile. Use the 'id' from the 'Create Doctor User' response as the userId. Copy the returned 'id' to use as doctorId when creating appointments."
+					}
+				},
+				{
+					"name": "Get All Doctor Profiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/doctor-profiles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctor-profiles"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Doctor Profile by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/doctor-profiles/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctor-profiles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "doctor-profile-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Doctor Profile by User ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/doctor-profiles/user/:userId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctor-profiles",
+								"user",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "user-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Doctor Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"specialization\": \"Cardiology & Internal Medicine\",\n  \"consultationFee\": 175.00,\n  \"bio\": \"Updated bio with more experience\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/doctor-profiles/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctor-profiles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "doctor-profile-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Doctor Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/doctor-profiles/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctor-profiles",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "doctor-profile-id-here"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Time Slots",
+			"item": [
+				{
+					"name": "Create Time Slot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dayOfWeek\": \"MONDAY\",\n  \"startTime\": \"09:00\",\n  \"endTime\": \"17:00\",\n  \"isAvailable\": true,\n  \"doctorId\": \"doctor-profile-id-here\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/time-slots",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"time-slots"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Time Slots",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/time-slots",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"time-slots"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Time Slot by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/time-slots/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"time-slots",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "time-slot-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Time Slots by Doctor ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/time-slots/doctor/:doctorId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"time-slots",
+								"doctor",
+								":doctorId"
+							],
+							"variable": [
+								{
+									"key": "doctorId",
+									"value": "doctor-profile-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Time Slot",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"startTime\": \"10:00\",\n  \"endTime\": \"18:00\",\n  \"isAvailable\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/time-slots/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"time-slots",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "time-slot-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Time Slot",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/time-slots/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"time-slots",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "time-slot-id-here"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "Create Appointment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"appointmentDate\": \"2025-12-20T10:00:00Z\",\n  \"startTime\": \"10:00\",\n  \"endTime\": \"11:00\",\n  \"status\": \"PENDING\",\n  \"symptoms\": \"Chest pain and shortness of breath\",\n  \"notes\": \"Patient needs urgent consultation\",\n  \"patientId\": \"patient-id-from-create-patient-request\",\n  \"doctorId\": \"doctor-profile-id-from-create-doctor-profile-request\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments"
+							]
+						},
+						"description": "Create an appointment. Use patientId from 'Create Patient' response and doctorId from 'Create Doctor Profile' response (NOT the doctor user ID)."
+					}
+				},
+				{
+					"name": "Get All Appointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Appointment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "appointment-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Appointments by Patient ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/patient/:patientId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"patient",
+								":patientId"
+							],
+							"variable": [
+								{
+									"key": "patientId",
+									"value": "patient-user-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Appointments by Doctor ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/doctor/:doctorId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"doctor",
+								":doctorId"
+							],
+							"variable": [
+								{
+									"key": "doctorId",
+									"value": "doctor-profile-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Appointment",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"CONFIRMED\",\n  \"notes\": \"Appointment confirmed, patient should arrive 10 minutes early\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "appointment-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Cancel Appointment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cancellationReason\": \"Patient requested cancellation\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments/:id/cancel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								":id",
+								"cancel"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "appointment-id-here"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Appointment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "appointment-id-here"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
+
