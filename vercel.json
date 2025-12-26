@@ -1,5 +1,5 @@
 {
   "builds": [
-    { "src": "frontend/package.json", "use": "@vercel/next" }
+    { "src": "Doctor-Appointment-System-main/frontend/package.json", "use": "@vercel/next" }
   ]
 }
