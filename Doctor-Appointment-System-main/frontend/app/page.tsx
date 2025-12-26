@@ -53,7 +53,7 @@ export default function LandingPage() {
       title: "Easy Booking",
       description: "Book appointments online in just a few clicks. Available 24/7 for your convenience.",
       color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-50",
+      bgColor: "bg-blue-100",
     },
     {
       icon: Clock,
